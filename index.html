@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zafra | Restaurant & Lounge - Experiencia Premium en Madrid</title>
+    <meta name="description" content="Zafra en Madrid. Restaurante de alta cocina, ambiente lounge exclusivo y shishas premium. Ubicado en C. del Dr. Esquerdo 140, Retiro. Reserva tu mesa.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zafra-black': '#0b0b0d',
+                        'zafra-gold': '#c8a96a',
+                        'zafra-gold-light': '#e0c58e',
+                        'zafra-white': '#f3f0ea',
+                    },
+                    fontFamily: {
+                        'serif': ['"Cormorant Garamond"', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #0b0b0d; color: #f3f0ea; overflow-x: hidden; }
+        
+        /* Estilos Premium */
+        .premium-blur { backdrop-filter: blur(12px); background-color: rgba(11, 11, 13, 0.9); }
+        .gold-border { border-color: rgba(200, 169, 106, 0.25); }
+        .text-gradient { background: linear-gradient(135deg, #c8a96a 0%, #f3f0ea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Animaciones */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.21, 0.6, 0.35, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Contenedores de Imagen */
+        .img-card { 
+            overflow: hidden; 
+            position: relative; 
+            background: #151518;
+            border: 1px solid rgba(200, 169, 106, 0.1);
+        }
+        .img-premium { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); 
+        }
+
+        /* Hero Background Distorsionado */
+        .hero-bg-container {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(8px) brightness(0.4) saturate(1.2);
+            transform: scale(1.1);
+        }
+
+        .btn-gold {
+            background: #c8a96a;
+            color: #0b0b0d;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-gold:hover {
+            background: #e0c58e;
+            box-shadow: 0 10px 20px rgba(200, 169, 106, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Reseñas Glassmorphism */
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(200, 169, 106, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* WhatsApp Floating */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+            .mobile-menu.open { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="font-sans font-light">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 premium-blur border-b gold-border transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="https://i.postimg.cc/XZQpX5vP/Logo-de-Zafra.png" alt="Zafra Logo" class="h-10 md:h-14">
+            </a>
+
+            <ul class="hidden lg:flex space-x-8 text-[11px] uppercase tracking-[0.25em] font-medium text-zafra-white/70">
+                <li><a href="#sobre-nosotros" class="hover:text-zafra-gold transition-colors">Sobre Zafra</a></li>
+                <li><a href="#restaurante" class="hover:text-zafra-gold transition-colors">Restaurante</a></li>
+                <li><a href="#lounge" class="hover:text-zafra-gold transition-colors">Lounge & Shishas</a></li>
+                <li><a href="#reseñas" class="hover:text-zafra-gold transition-colors">Reseñas</a></li>
+                <li><a href="#ubicacion" class="hover:text-zafra-gold transition-colors">Ubicación</a></li>
+            </ul>
+
+            <div class="hidden lg:block">
+                <a href="https://wa.me/34654032099?text=Hola%20Zafra%2C%20quiero%20reservar%20una%20mesa" class="btn-gold px-7 py-3 text-[10px] uppercase tracking-[0.2em] font-bold rounded-sm inline-block">
+                    Reservar mesa
+                </a>
+            </div>
+
+            <button id="menu-toggle" class="lg:hidden text-zafra-gold p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[60] bg-zafra-black flex flex-col p-10 lg:hidden">
+        <button id="menu-close" class="self-end text-zafra-gold mb-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="flex flex-col space-y-8 text-3xl font-serif text-zafra-white">
+            <li><a href="#sobre-nosotros" onclick="closeMenu()">Sobre Zafra</a></li>
+            <li><a href="#restaurante" onclick="closeMenu()">Restaurante</a></li>
+            <li><a href="#lounge" onclick="closeMenu()">Lounge & Shishas</a></li>
+            <li><a href="#reseñas" onclick="closeMenu()">Reseñas</a></li>
+            <li><a href="#ubicacion" onclick="closeMenu()">Ubicación</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-zafra-black">
+        <div class="hero-bg-container">
+            <img src="https://i.postimg.cc/jwbZqGLW/Whats-App-Image-2025-12-26-at-17-34-45.jpg" alt="Hero Background" class="hero-bg-image">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <div class="relative z-10 text-center fade-in visible px-6">
+            <span class="text-zafra-gold text-[10px] md:text-xs uppercase tracking-[0.6em] mb-4 block font-bold">Madrid · Retiro</span>
+            <h1 class="font-serif text-7xl md:text-9xl mb-2 tracking-tight drop-shadow-2xl">Zafra</h1>
+            <p class="text-zafra-gold text-sm md:text-xl uppercase tracking-[0.3em] font-light mb-12 italic drop-shadow-lg">Restaurant & Lounge</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold rounded-sm">Reservar ahora</a>
+                <a href="#restaurante" class="border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Descubrir Menú</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+            <div class="w-px h-12 bg-gradient-to-b from-zafra-gold to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- Sobre Zafra - REDISEÑADO PARA MEJOR PROPORCIÓN -->
+    <section id="sobre-nosotros" class="py-24 lg:py-32 bg-zafra-black overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+                <!-- Texto -->
+                <div class="lg:w-1/2 fade-in order-2 lg:order-1">
+                    <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-6 font-bold">Nuestra Historia</span>
+                    <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">La esencia del <br><span class="text-gradient italic">lujo discreto</span></h2>
+                    <p class="text-zafra-white/70 leading-relaxed mb-10 text-lg md:text-xl font-light font-serif italic max-w-xl">
+                        "En Zafra, el tiempo se detiene. Hemos creado un refugio donde la gastronomía de excelencia y el ocio nocturno conviven en perfecta armonía en el corazón de Madrid."
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-lg">
+                        <div class="border-l border-zafra-gold/40 pl-6 py-2">
+                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Premium</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Calidad de ingredientes superior</span>
+                        </div>
+                        <div class="border-l border-zafra-gold/40 pl-6 py-2">
+                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Exclusivo</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Ambiente íntimo y sofisticado</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Imagen Ampliada -->
+                <div class="lg:w-1/2 fade-in order-1 lg:order-2 w-full">
+                    <div class="relative group">
+                        <!-- Marco decorativo -->
+                        <div class="absolute -inset-4 border border-zafra-gold/10 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700 hidden lg:block"></div>
+                        <div class="img-card w-full aspect-[4/5] lg:aspect-[3/4] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)] rounded-sm">
+                            <img src="https://i.postimg.cc/3yptTKJD/Whats-App-Image-2025-12-26-at-17-35-09.jpg" alt="Interior Zafra" class="img-premium scale-105 group-hover:scale-110 duration-1000">
+                            <!-- Overlay sutil -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-zafra-black/60 to-transparent opacity-60"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurante -->
+    <section id="restaurante" class="py-24 bg-zafra-black border-y gold-border">
+        <div class="container mx-auto px-6 text-center mb-20 fade-in">
+            <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-4 font-bold">Gastronomía</span>
+            <h2 class="font-serif text-5xl md:text-6xl mb-6">Nuestra Cocina</h2>
+            <div class="w-16 h-px bg-zafra-gold mx-auto"></div>
+        </div>
+
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
+            <div class="fade-in group">
+                <div class="img-card aspect-[4/5] mb-6 mx-auto max-w-[300px]">
+                    <img src="https://i.postimg.cc/S2fVnDML/Whats-App-Image-2025-12-26-at-18-03-53.jpg" alt="Carnes" class="img-premium group-hover:scale-110">
+                </div>
+                <h3 class="text-zafra-gold font-serif text-2xl mb-2 text-center">Carnes Selectas</h3>
+                <p class="text-zafra-white/50 text-xs text-center font-light italic uppercase tracking-widest">Origen Nacional Certificado</p>
+            </div>
+            <div class="fade-in group" style="transition-delay: 0.2s;">
+                <div class="img-card aspect-[4/5] mb-6 mx-auto max-w-[300px]">
+                    <img src="https://i.postimg.cc/dkY4QzL2/Whats-App-Image-2025-12-26-at-18-03-53-(1).jpg" alt="Entrantes" class="img-premium group-hover:scale-110">
+                </div>
+                <h3 class="text-zafra-gold font-serif text-2xl mb-2 text-center">Entrantes Gourmet</h3>
+                <p class="text-zafra-white/50 text-xs text-center font-light italic uppercase tracking-widest">Sabor Mediterráneo de Autor</p>
+            </div>
+            <div class="fade-in group" style="transition-delay: 0.4s;">
+                <div class="img-card aspect-[4/5] mb-6 mx-auto max-w-[300px]">
+                    <img src="https://i.postimg.cc/62XY6DyM/Whats-App-Image-2025-12-26-at-18-03-53-(2).jpg" alt="Postres" class="img-premium group-hover:scale-110">
+                </div>
+                <h3 class="text-zafra-gold font-serif text-2xl mb-2 text-center">Dulces Finales</h3>
+                <p class="text-zafra-white/50 text-xs text-center font-light italic uppercase tracking-widest">Repostería Artesana Diaria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lounge & Shishas -->
+    <section id="lounge" class="py-32 bg-zafra-black">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 grid grid-cols-2 gap-6 fade-in max-w-lg">
+                    <div class="img-card aspect-[3/4] mt-12 shadow-2xl">
+                        <img src="https://i.postimg.cc/5YSpXnCm/Whats-App-Image-2025-12-26-at-18-08-17.jpg" alt="Shisha Lounge" class="img-premium">
+                    </div>
+                    <div class="img-card aspect-[3/4] shadow-2xl">
+                        <img src="https://i.postimg.cc/62fz8Yvf/Whats-App-Image-2025-12-26-at-18-08-18.jpg" alt="Cocktails" class="img-premium">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 fade-in">
+                    <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-6 font-bold">The Lounge Experience</span>
+                    <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">Shishas & <br><span class="italic text-gradient">Noches Eternas</span></h2>
+                    <p class="text-zafra-white/70 leading-relaxed mb-10 text-xl font-light">
+                        Ofrecemos las mejores shishas de la capital, utilizando marcas de tabaco de prestigio mundial y sistemas de última generación.
+                    </p>
+                    <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-widest font-bold inline-block">Ver Carta de Shishas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reseñas -->
+    <section id="reseñas" class="py-24 bg-zafra-black border-y gold-border">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-serif text-5xl mb-4 italic">Lo que dicen <span class="text-zafra-gold">nuestros clientes</span></h2>
+                <div class="flex justify-center text-zafra-gold gap-1">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="review-card p-10 fade-in">
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"El ambiente es inmejorable. Un lugar perfecto para cenar y luego disfrutar de una buena shisha en Madrid."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-px bg-zafra-gold"></div>
+                        <span class="uppercase tracking-widest text-[9px] font-bold">Pablo R.</span>
+                    </div>
+                </div>
+                <div class="review-card p-10 fade-in" style="transition-delay: 0.2s;">
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Las mejores shishas de la zona del Retiro. Servicio atento y decoración de diez."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-px bg-zafra-gold"></div>
+                        <span class="uppercase tracking-widest text-[9px] font-bold">María G.</span>
+                    </div>
+                </div>
+                <div class="review-card p-10 fade-in" style="transition-delay: 0.4s;">
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Un descubrimiento. La comida sorprende gratamente y las copas están muy bien preparadas."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-px bg-zafra-gold"></div>
+                        <span class="uppercase tracking-widest text-[9px] font-bold">Javier M.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="py-24 bg-zafra-black">
+        <div class="container mx-auto px-6 mb-16 text-center">
+            <h2 class="font-serif text-5xl md:text-6xl mb-4">Galería <span class="text-gradient">Zafra</span></h2>
+            <p class="text-zafra-white/30 uppercase tracking-[0.3em] text-[9px]">Instantes de exclusividad</p>
+        </div>
+        
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl">
+            <div class="img-card h-48 cursor-pointer fade-in"><img src="https://i.postimg.cc/9RhJXvr9/Whats-App-Image-2025-12-26-at-18-03-00.jpg" alt="Gallery" class="img-premium gallery-img"></div>
+            <div class="img-card h-48 cursor-pointer fade-in"><img src="https://i.postimg.cc/gXWNcfnL/Whats-App-Image-2025-12-26-at-18-03-00-(1).jpg" alt="Gallery" class="img-premium gallery-img"></div>
+            <div class="img-card h-48 cursor-pointer fade-in"><img src="https://i.postimg.cc/47gB4rmY/Whats-App-Image-2025-12-26-at-18-03-00-(2).jpg" alt="Gallery" class="img-premium gallery-img"></div>
+            <div class="img-card h-48 cursor-pointer fade-in"><img src="https://i.postimg.cc/2bD2jPVG/Whats-App-Image-2025-12-26-at-18-03-01.jpg" alt="Gallery" class="img-premium gallery-img"></div>
+            <div class="img-card h-48 cursor-pointer fade-in"><img src="https://i.postimg.cc/ftNBW6J2/Whats-App-Image-2025-12-26-at-18-03-53-(3).jpg" alt="Gallery" class="img-premium gallery-img"></div>
+            <div class="img-card h-48 cursor-pointer fade-in"><img src="https://i.postimg.cc/5YSpXnCm/Whats-App-Image-2025-12-26-at-18-08-17.jpg" alt="Gallery" class="img-premium gallery-img"></div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="py-24 bg-zafra-black border-t gold-border">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/3 fade-in">
+                    <h2 class="font-serif text-5xl mb-12">Contacto</h2>
+                    <div class="space-y-8 text-zafra-white/80">
+                        <div class="group cursor-pointer">
+                            <span class="text-zafra-gold uppercase tracking-widest text-[9px] block mb-2 font-bold">Dirección</span>
+                            <p class="text-lg font-light group-hover:text-zafra-gold transition-colors">C. del Dr. Esquerdo, 140, <br>Retiro, 28007 Madrid</p>
+                        </div>
+                        <div>
+                            <span class="text-zafra-gold uppercase tracking-widest text-[9px] block mb-2 font-bold">Horario Lounge</span>
+                            <p class="text-lg font-light">Lunes a Domingo <br>13:00h - 03:00h</p>
+                        </div>
+                        <div>
+                            <span class="text-zafra-gold uppercase tracking-widest text-[9px] block mb-2 font-bold">Reservas</span>
+                            <p class="text-lg font-light">+34 654 03 20 99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/3 w-full h-[500px] border border-zafra-gold/20 grayscale invert-[0.9] fade-in shadow-2xl overflow-hidden rounded-sm">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.3032588147814!2d-3.671048823441!3d40.40216747144111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422616216f9f5b%3A0xe54d682496d67b7b!2sC.%20del%20Dr.%20Esquerdo%2C%20140%2C%20Retiro%2C%2028007%20Madrid!5e0!3m2!1ses!2ses!4v1712345678901!5m2!1ses!2ses" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-zafra-black border-t gold-border">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://i.postimg.cc/XZQpX5vP/Logo-de-Zafra.png" alt="Zafra Footer" class="h-10 mx-auto mb-8 opacity-50">
+            <p class="text-zafra-white/20 text-[8px] uppercase tracking-[0.4em]">© 2025 Zafra Madrid | Elegancia y Distinción</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/34654032099" target="_blank" class="wa-float">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="white" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.766-5.764-5.766zm3.392 8.221c-.142.399-.833.723-1.141.774-.285.051-.614.082-.994-.039-.234-.075-.544-.136-.938-.309-1.637-.714-2.704-2.384-2.784-2.492-.08-.108-.662-.881-.662-1.68 0-.799.42-1.191.569-1.356.149-.165.32-.206.426-.206.107 0 .213.001.305.006.097.004.228-.037.356.276.132.321.45 1.096.488 1.176.039.08.066.173.013.28-.053.107-.079.173-.16.267-.08.093-.169.206-.24.276-.08.08-.163.167-.069.328.094.16.417.689.896 1.112.617.544 1.135.714 1.295.795.16.08.254.067.348-.041.093-.108.401-.467.508-.626.107-.159.213-.134.357-.08.143.054.91.428 1.066.507.157.079.261.117.299.182.038.065.038.376-.104.775zM12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10z"></path></svg>
+    </a>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[200] bg-black/98 hidden items-center justify-center p-4">
+        <button id="lightbox-close" class="absolute top-8 right-8 text-zafra-gold"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12"/></svg></button>
+        <img id="lightbox-img" src="" alt="Zoom" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-zafra-gold/30">
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.onclick = () => mobileMenu.classList.add('open');
+        menuClose.onclick = () => mobileMenu.classList.remove('open');
+        const closeMenu = () => mobileMenu.classList.remove('open');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.querySelectorAll('.gallery-img').forEach((img) => {
+            img.onclick = () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+            };
+        });
+        lightbox.onclick = () => { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); };
+    </script>
+</body>
+</html>
