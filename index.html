@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zafra | Restaurant & Lounge - Experiencia Premium en Madrid</title>
-    <meta name="description" content="Zafra en Madrid. Restaurante de alta cocina, ambiente lounge exclusivo y shishas premium. Ubicado en C. del Dr. Esquerdo 140, Retiro. Reserva tu mesa.">
+    <meta name="description" content="Zafra en Madrid. Restaurante de alta cocina de Oriente Medio, ambiente lounge exclusivo y shishas premium. Ubicado en C. del Dr. Esquerdo 140, Retiro.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,83 +37,30 @@
         html { scroll-behavior: smooth; }
         body { background-color: #0b0b0d; color: #f3f0ea; overflow-x: hidden; }
         
-        /* Estilos Premium */
         .premium-blur { backdrop-filter: blur(12px); background-color: rgba(11, 11, 13, 0.9); }
         .gold-border { border-color: rgba(200, 169, 106, 0.25); }
         .text-gradient { background: linear-gradient(135deg, #c8a96a 0%, #f3f0ea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Animaciones */
         .fade-in { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.21, 0.6, 0.35, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* Contenedores de Imagen */
-        .img-card { 
-            overflow: hidden; 
-            position: relative; 
-            background: #151518;
-            border: 1px solid rgba(200, 169, 106, 0.1);
-        }
-        .img-premium { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); 
-        }
+        .img-card { overflow: hidden; position: relative; background: #151518; border: 1px solid rgba(200, 169, 106, 0.1); }
+        .img-premium { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
 
-        /* Hero Background */
-        .hero-bg-container {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .hero-bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5);
-            transform: scale(1.05);
-        }
+        .hero-bg-container { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .hero-bg-image { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transform: scale(1.05); }
 
-        .btn-gold {
-            background: #c8a96a;
-            color: #0b0b0d;
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-        .btn-gold:hover {
-            background: #e0c58e;
-            box-shadow: 0 10px 20px rgba(200, 169, 106, 0.2);
-            transform: translateY(-2px);
-        }
+        .btn-gold { background: #c8a96a; color: #0b0b0d; transition: all 0.4s ease; position: relative; z-index: 1; }
+        .btn-gold:hover { background: #e0c58e; box-shadow: 0 10px 20px rgba(200, 169, 106, 0.2); transform: translateY(-2px); }
 
-        /* Reseñas Glassmorphism */
-        .review-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(200, 169, 106, 0.1);
-            backdrop-filter: blur(5px);
-        }
+        .review-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(200, 169, 106, 0.1); backdrop-filter: blur(5px); }
 
-        /* WhatsApp Floating */
-        .wa-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            transition: all 0.3s ease;
-        }
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); z-index: 100; transition: all 0.3s ease; }
+
+        /* Estilos para la Carta */
+        .menu-tab { border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+        .menu-tab.active { border-bottom: 2px solid #c8a96a; color: #c8a96a; }
+        .menu-item { border-bottom: 1px solid rgba(200, 169, 106, 0.1); padding: 1.5rem 0; }
 
         @media (max-width: 768px) {
             .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
@@ -132,7 +79,7 @@
 
             <ul class="hidden lg:flex space-x-8 text-[11px] uppercase tracking-[0.25em] font-medium text-zafra-white/70">
                 <li><a href="#sobre-nosotros" class="hover:text-zafra-gold transition-colors">Sobre Zafra</a></li>
-                <li><a href="#restaurante" class="hover:text-zafra-gold transition-colors">Restaurante</a></li>
+                <li><a href="#carta" class="hover:text-zafra-gold transition-colors">La Carta</a></li>
                 <li><a href="#lounge" class="hover:text-zafra-gold transition-colors">Lounge & Shishas</a></li>
                 <li><a href="#reseñas" class="hover:text-zafra-gold transition-colors">Reseñas</a></li>
                 <li><a href="#ubicacion" class="hover:text-zafra-gold transition-colors">Ubicación</a></li>
@@ -162,8 +109,8 @@
         <ul class="flex flex-col space-y-8 text-3xl font-serif text-zafra-white">
             <li><a href="#sobre-nosotros" onclick="closeMenu()">Sobre Zafra</a></li>
             <li><a href="#restaurante" onclick="closeMenu()">Restaurante</a></li>
+            <li><a href="#carta" onclick="closeMenu()">La Carta</a></li>
             <li><a href="#lounge" onclick="closeMenu()">Lounge & Shishas</a></li>
-            <li><a href="#reseñas" onclick="closeMenu()">Reseñas</a></li>
             <li><a href="#ubicacion" onclick="closeMenu()">Ubicación</a></li>
         </ul>
     </div>
@@ -181,10 +128,9 @@
             <p class="text-zafra-gold text-sm md:text-xl uppercase tracking-[0.3em] font-light mb-12 italic drop-shadow-lg">Restaurant & Lounge</p>
             <div class="flex flex-col md:flex-row gap-6 justify-center">
                 <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold rounded-sm">Reservar ahora</a>
-                <a href="#restaurante" class="border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Descubrir Menú</a>
+                <a href="#carta" class="border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Ver la Carta</a>
             </div>
         </div>
-
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
             <div class="w-px h-12 bg-gradient-to-b from-zafra-gold to-transparent"></div>
         </div>
@@ -194,67 +140,58 @@
     <section id="sobre-nosotros" class="py-24 lg:py-32 bg-zafra-black overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-                <!-- Texto -->
                 <div class="lg:w-1/2 fade-in order-2 lg:order-1">
-                    <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-6 font-bold">Nuestra Historia</span>
-                    <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">La esencia del <br><span class="text-gradient italic">lujo discreto</span></h2>
+                    <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-6 font-bold">Bienvenidos a Zafra</span>
+                    <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">Sabores de <br><span class="text-gradient italic">Oriente Medio</span></h2>
                     <p class="text-zafra-white/70 leading-relaxed mb-10 text-lg md:text-xl font-light font-serif italic max-w-xl">
-                        "En Zafra, el tiempo se detiene. Hemos creado un refugio donde la gastronomía de excelencia y el ocio nocturno conviven en perfecta armonía en el corazón de Madrid."
+                        "Cada plato es un viaje a través de culturas, aromas y tradiciones milenarias. Desde especias fragantes hasta dulces exquisitos, nuestras recetas están elaboradas con pasión."
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-lg">
                         <div class="border-l border-zafra-gold/40 pl-6 py-2">
-                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Premium</span>
-                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Calidad de ingredientes superior</span>
+                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Tradición</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Recetas auténticas milenarias</span>
                         </div>
                         <div class="border-l border-zafra-gold/40 pl-6 py-2">
-                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Exclusivo</span>
-                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Ambiente íntimo y sofisticado</span>
+                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Memorable</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Una experiencia sensorial única</span>
                         </div>
                     </div>
                 </div>
-                <!-- Imagen -->
                 <div class="lg:w-1/2 fade-in order-1 lg:order-2 w-full">
-                    <div class="relative group">
-                        <div class="absolute -inset-4 border border-zafra-gold/10 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700 hidden lg:block"></div>
-                        <div class="img-card w-full aspect-[4/5] lg:aspect-[3/4] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)] rounded-sm">
-                            <img src="https://i.postimg.cc/MTWK794p/Chat-GPT-Image-7-ene-2026-23-09-39.png" alt="Interior Zafra" class="img-premium scale-105 group-hover:scale-110 duration-1000">
-                            <div class="absolute inset-0 bg-gradient-to-t from-zafra-black/60 to-transparent opacity-60"></div>
-                        </div>
+                    <div class="img-card w-full aspect-[3/4] shadow-2xl rounded-sm">
+                        <img src="https://i.postimg.cc/MTWK794p/Chat-GPT-Image-7-ene-2026-23-09-39.png" alt="Ambiente Zafra" class="img-premium">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Restaurante -->
-    <section id="restaurante" class="py-24 bg-zafra-black border-y gold-border">
-        <div class="container mx-auto px-6 text-center mb-20 fade-in">
-            <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-4 font-bold">Gastronomía</span>
-            <h2 class="font-serif text-5xl md:text-6xl mb-6">Nuestra Cocina</h2>
-            <div class="w-16 h-px bg-zafra-gold mx-auto"></div>
-        </div>
+    <!-- Nueva Sección: LA CARTA DIGITAL -->
+    <section id="carta" class="py-24 bg-[#0d0d0f] border-y gold-border">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-4 font-bold">Experiencia Gastronómica</span>
+                <h2 class="font-serif text-5xl md:text-6xl mb-6">Nuestra Carta</h2>
+                <div class="w-16 h-px bg-zafra-gold mx-auto mb-10"></div>
+                
+                <!-- Selector de Categorías -->
+                <div class="flex flex-wrap justify-center gap-6 md:gap-10 overflow-x-auto pb-4 no-scrollbar">
+                    <button onclick="filterMenu('entrantes')" class="menu-tab active uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-entrantes">Entrantes</button>
+                    <button onclick="filterMenu('ensaladas')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-ensaladas">Ensaladas</button>
+                    <button onclick="filterMenu('parrilla')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-parrilla">Parrilla</button>
+                    <button onclick="filterMenu('especialidades')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-especialidades">Especialidades</button>
+                    <button onclick="filterMenu('postres')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-postres">Postres</button>
+                </div>
+            </div>
 
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
-            <div class="fade-in group">
-                <div class="img-card aspect-[4/5] mb-6 mx-auto max-w-[320px]">
-                    <img src="https://i.postimg.cc/G2chFXN8/Imagen-Zafra-3.png" alt="Gastronomía Zafra" class="img-premium group-hover:scale-110">
-                </div>
-                <h3 class="text-zafra-gold font-serif text-2xl mb-2 text-center">Carnes Selectas</h3>
-                <p class="text-zafra-white/50 text-xs text-center font-light italic uppercase tracking-widest">Sabor y Punto Perfecto</p>
+            <!-- Contenedor del Menú -->
+            <div id="menu-container" class="max-w-4xl mx-auto min-h-[500px] fade-in">
+                <!-- Los items se cargan por JS -->
             </div>
-            <div class="fade-in group" style="transition-delay: 0.2s;">
-                <div class="img-card aspect-[4/5] mb-6 mx-auto max-w-[320px]">
-                    <img src="https://i.postimg.cc/j5sdHM9W/IMagen-Zafra-4.png" alt="Platos Gourmet" class="img-premium group-hover:scale-110">
-                </div>
-                <h3 class="text-zafra-gold font-serif text-2xl mb-2 text-center">Entrantes Gourmet</h3>
-                <p class="text-zafra-white/50 text-xs text-center font-light italic uppercase tracking-widest">Creatividad Mediterránea</p>
-            </div>
-            <div class="fade-in group" style="transition-delay: 0.4s;">
-                <div class="img-card aspect-[4/5] mb-6 mx-auto max-w-[320px]">
-                    <img src="https://i.postimg.cc/zBJXCxMy/Imagen-Zafra-5.png" alt="Detalles Gastronómicos" class="img-premium group-hover:scale-110">
-                </div>
-                <h3 class="text-zafra-gold font-serif text-2xl mb-2 text-center">Experiencia Completa</h3>
-                <p class="text-zafra-white/50 text-xs text-center font-light italic uppercase tracking-widest">Desde el primer bocado</p>
+            
+            <div class="mt-16 text-center fade-in">
+                <p class="text-zafra-white/30 text-[10px] uppercase tracking-widest mb-6">* IVA incluido. Consulte alergias a nuestro personal.</p>
+                <a href="https://wa.me/34654032099" class="border border-zafra-gold/30 px-10 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-zafra-gold hover:text-zafra-black transition-all">Reservar Mesa</a>
             </div>
         </div>
     </section>
@@ -265,19 +202,19 @@
             <div class="flex flex-col-reverse lg:flex-row items-center gap-20">
                 <div class="lg:w-1/2 grid grid-cols-2 gap-6 fade-in max-w-lg">
                     <div class="img-card aspect-[3/4] mt-12 shadow-2xl">
-                        <img src="https://i.postimg.cc/xC0Tv67c/Imagen-Zafra-6.png" alt="Shisha Lounge" class="img-premium">
+                        <img src="https://i.postimg.cc/xC0Tv67c/Imagen-Zafra-6.png" alt="Shisha Premium" class="img-premium">
                     </div>
                     <div class="img-card aspect-[3/4] shadow-2xl">
-                        <img src="https://i.postimg.cc/FR9syTqF/Chat-GPT-Image-7-ene-2026-23-12-59.png" alt="Coctelería" class="img-premium">
+                        <img src="https://i.postimg.cc/FR9syTqF/Chat-GPT-Image-7-ene-2026-23-12-59.png" alt="Cócteles Lounge" class="img-premium">
                     </div>
                 </div>
                 <div class="lg:w-1/2 fade-in">
                     <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-6 font-bold">The Lounge Experience</span>
                     <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">Shishas & <br><span class="italic text-gradient">Noches Eternas</span></h2>
                     <p class="text-zafra-white/70 leading-relaxed mb-10 text-xl font-light">
-                        Ofrecemos las mejores shishas de la capital, utilizando marcas de tabaco de prestigio mundial en un ambiente diseñado para la desconexión total.
+                        Disfruta de las mejores shishas de Madrid en un ambiente sofisticado. Una carta de tabacos premium y coctelería de autor para cerrar la noche.
                     </p>
-                    <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-widest font-bold inline-block">Ver Carta de Shishas</a>
+                    <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-widest font-bold inline-block">Reservar Shisha</a>
                 </div>
             </div>
         </div>
@@ -319,36 +256,7 @@
         </div>
     </section>
 
-    <!-- Galería -->
-    <section id="galeria" class="py-24 bg-zafra-black">
-        <div class="container mx-auto px-6 mb-16 text-center">
-            <h2 class="font-serif text-5xl md:text-6xl mb-4">Galería <span class="text-gradient">Zafra</span></h2>
-            <p class="text-zafra-white/30 uppercase tracking-[0.3em] text-[9px]">Instantes de exclusividad</p>
-        </div>
-        
-        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl">
-            <div class="img-card h-48 cursor-pointer fade-in">
-                <img src="https://i.postimg.cc/cHs4RFj6/Chat-GPT-Image-7-ene-2026-23-04-11.png" alt="Zafra Ambience" class="img-premium gallery-img">
-            </div>
-            <div class="img-card h-48 cursor-pointer fade-in">
-                <img src="https://i.postimg.cc/d1qt25X0/Chat-GPT-Image-7-ene-2026-23-07-44.png" alt="Zafra Detail" class="img-premium gallery-img">
-            </div>
-            <div class="img-card h-48 cursor-pointer fade-in">
-                <img src="https://i.postimg.cc/hjSPL2wn/Chat-GPT-Image-7-ene-2026-23-16-23.png" alt="Zafra Night" class="img-premium gallery-img">
-            </div>
-            <div class="img-card h-48 cursor-pointer fade-in">
-                <img src="https://i.postimg.cc/cHs4RFj3/Imagenes-Zafra-1.png" alt="Zafra Food" class="img-premium gallery-img">
-            </div>
-            <div class="img-card h-48 cursor-pointer fade-in">
-                <img src="https://i.postimg.cc/3RKJXt6m/Imagenes-Zafra-2.png" alt="Zafra Lounge" class="img-premium gallery-img">
-            </div>
-            <div class="img-card h-48 cursor-pointer fade-in">
-                <img src="https://i.postimg.cc/G2chFXN8/Imagen-Zafra-3.png" alt="Zafra Dish" class="img-premium gallery-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- Ubicación y Horarios -->
+    <!-- Ubicación -->
     <section id="ubicacion" class="py-24 bg-zafra-black border-t gold-border">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
@@ -399,6 +307,91 @@
     </div>
 
     <script>
+        // Datos de la Carta digitalizados del PDF
+        const menuData = {
+            entrantes: [
+                { name: "Hummus", price: "10€", desc: "Suave crema de garbanzos elaborada con sésamo y un delicado toque de aceite de oliva." },
+                { name: "Mutabbal", price: "10€", desc: "Crema de berenjenas ahumadas con salsa de sésamo y aceite de oliva." },
+                { name: "Muhammara", price: "10€", desc: "Pimientos rojos asados con nueces y esencia de granada." },
+                { name: "Warak Enab", price: "13€", desc: "Tiernos rollitos de hojas de parra rellenos de arroz, tomate y perejil." },
+                { name: "Kibbeh Makliyeh", price: "13€", desc: "Croquetas de masa de trigo rellenas de cordero picado y piñones." },
+                { name: "Falafel", price: "9€", desc: "Crujientes bolitas de garbanzos y hierbas frescas con especias tradicionales." },
+                { name: "Rakayek de queso", price: "10€", desc: "Masa filo rellena de queso Feta y Halloumi." },
+                { name: "Trío Libanés", price: "17€", desc: "Surtido de Hummus, Mutabbal y Muhammarah." }
+            ],
+            ensaladas: [
+                { name: "Tabboule", price: "10€", desc: "Perejil fresco picado, bulgur hidratado, tomate, cebolla, hierbabuena y limón." },
+                { name: "Fattoush", price: "10€", desc: "Lechugas, tomate, pepino, rábano, rúcula, granada y pan tostado." },
+                { name: "Labneh con Makdus", price: "9€", desc: "Suave labneh casero con berenjena caramelizada y nueces." },
+                { name: "Ensalada Raheb", price: "10€", desc: "Berenjenas asadas con pimientos, granada, cebolla y ajo." },
+                { name: "Arnabeet Tahini", price: "13€", desc: "Coliflor asada al horno con salsa de tahini y especias." }
+            ],
+            parrilla: [
+                { name: "Mix Grill", price: "23€", desc: "Selección de pinchos de solomillo de ternera, pollo y kafta." },
+                { name: "Lahem Mashwi", price: "21€", desc: "Pinchos de solomillo de ternera a la parrilla." },
+                { name: "Shish Taouk", price: "19€", desc: "Pinchos de pollo marinados en especias, limón y aceite de oliva." },
+                { name: "Kafta Khachkhach", price: "20€", desc: "Carne picada con hierbas y especias a la parrilla." },
+                { name: "Chuletas de cordero", price: "24€", desc: "Jugosas chuletas de cordero a la parrilla." },
+                { name: "Lubina a la parrilla", price: "25€", desc: "Marinada en ajo y perejil con salsa tártara." },
+                { name: "Tomahawk de Angus", price: "125€", desc: "1200g de carne australiana de primera calidad con piña a la parrilla." }
+            ],
+            especialidades: [
+                { name: "Raqaba de Cordero", price: "23€", desc: "Cocinado 5 horas, con arroz perfumado, canela y frutos secos." },
+                { name: "Kafta Balloon", price: "19€", desc: "Carne picada en salsa de tomate y verduras cubierta con pan libanés." },
+                { name: "Tajin de Carne", price: "15€", desc: "Ternera tierna con ciruelas caramelizadas al estilo marroquí." },
+                { name: "Pastela de Pollo", price: "15€", desc: "Masa filo rellena de pollo y almendras tostadas." },
+                { name: "Cuscús Marrakesh", price: "18€", desc: "Sémola de trigo con ternera estofada y verduras." },
+                { name: "Piñata de Marisco", price: "29€", desc: "Piña tropical rellena de mariscos variados." }
+            ],
+            postres: [
+                { name: "Cheesecake Dubai", price: "8€", desc: "Tarta de queso cremosa al estilo Dubai." },
+                { name: "Pistacho Libanés", price: "8€", desc: "Masa de pistacho con suave crema mascarpone." },
+                { name: "Baklawa", price: "3€/ud", desc: "Masa filo rellena de frutos secos y almíbar." },
+                { name: "Katayef", price: "8€", desc: "Crêpe relleno de frutos secos y helado." },
+                { name: "Mouhalabieh", price: "6.50€", desc: "Cuajada árabe aromatizada con pistacho o frambuesa." }
+            ]
+        };
+
+        function filterMenu(category) {
+            const container = document.getElementById('menu-container');
+            const tabs = document.querySelectorAll('.menu-tab');
+            
+            // Animación de salida
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Cambiar clase activa
+                tabs.forEach(tab => tab.classList.remove('active'));
+                document.getElementById(`tab-${category}`).classList.add('active');
+                
+                // Generar HTML
+                let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">';
+                menuData[category].forEach(item => {
+                    html += `
+                        <div class="menu-item flex flex-col justify-center">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-serif text-xl md:text-2xl text-zafra-gold">${item.name}</h4>
+                                <span class="text-zafra-white font-medium text-sm md:text-base">${item.price}</span>
+                            </div>
+                            <p class="text-zafra-white/40 text-xs md:text-sm leading-relaxed">${item.desc}</p>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                
+                container.innerHTML = html;
+                
+                // Animación de entrada
+                container.style.opacity = '1';
+            }, 300);
+        }
+
+        // Carga inicial
+        window.onload = () => {
+            filterMenu('entrantes');
+        };
+
+        // UI Logic
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -412,17 +405,6 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        document.querySelectorAll('.gallery-img').forEach((img) => {
-            img.onclick = () => {
-                lightboxImg.src = img.src;
-                lightbox.classList.remove('hidden');
-                lightbox.classList.add('flex');
-            };
-        });
-        lightbox.onclick = () => { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); };
     </script>
 </body>
 </html>
