@@ -19,10 +19,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'zafra-black': '#0b0b0d',
+                        'zafra-black': '#F2E8D9',
                         'zafra-gold': '#c8a96a',
                         'zafra-gold-light': '#e0c58e',
-                        'zafra-white': '#f3f0ea',
+                        'zafra-white': '#352A22',
                     },
                     fontFamily: {
                         'serif': ['"Cormorant Garamond"', 'serif'],
@@ -35,16 +35,16 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { background-color: #0b0b0d; color: #f3f0ea; overflow-x: hidden; }
+        body { background-color: #F2E8D9; color: #352A22; overflow-x: hidden; }
         
-        .premium-blur { backdrop-filter: blur(12px); background-color: rgba(11, 11, 13, 0.9); }
+        .premium-blur { backdrop-filter: blur(12px); background-color: rgba(242, 232, 217, 0.96); }
         .gold-border { border-color: rgba(200, 169, 106, 0.25); }
-        .text-gradient { background: linear-gradient(135deg, #c8a96a 0%, #f3f0ea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient { background: linear-gradient(135deg, #a7803f 0%, #533b24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .fade-in { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.21, 0.6, 0.35, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .img-card { overflow: hidden; position: relative; background: #151518; border: 1px solid rgba(200, 169, 106, 0.1); }
+        .img-card { overflow: hidden; position: relative; background: #e4d7c5; border: 1px solid rgba(200, 169, 106, 0.1); }
         .img-premium { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
 
         .hero-bg-container { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
@@ -53,7 +53,7 @@
         .btn-gold { background: #c8a96a; color: #0b0b0d; transition: all 0.4s ease; position: relative; z-index: 1; }
         .btn-gold:hover { background: #e0c58e; box-shadow: 0 10px 20px rgba(200, 169, 106, 0.2); transform: translateY(-2px); }
 
-        .review-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(200, 169, 106, 0.1); backdrop-filter: blur(5px); }
+        .review-card { background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(200, 169, 106, 0.1); backdrop-filter: blur(5px); }
 
         .wa-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); z-index: 100; transition: all 0.3s ease; }
 
@@ -122,13 +122,13 @@
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
         
-        <div class="relative z-10 text-center fade-in visible px-6">
+        <div class="relative z-10 text-center fade-in visible px-6 text-white">
             <span class="text-zafra-gold text-[10px] md:text-xs uppercase tracking-[0.6em] mb-4 block font-bold">Madrid · Retiro</span>
-            <h1 class="font-serif text-7xl md:text-9xl mb-2 tracking-tight drop-shadow-2xl">Zafra</h1>
+            <h1 class="font-serif text-7xl md:text-9xl mb-2 tracking-tight drop-shadow-2xl text-white">Zafra</h1>
             <p class="text-zafra-gold text-sm md:text-xl uppercase tracking-[0.3em] font-light mb-12 italic drop-shadow-lg">Restaurant & Lounge</p>
             <div class="flex flex-col md:flex-row gap-6 justify-center">
                 <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold rounded-sm">Reservar ahora</a>
-                <a href="#carta" class="border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Ver la Carta</a>
+                <a href="#carta" class="text-white border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Ver la Carta</a>
             </div>
         </div>
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
@@ -148,12 +148,12 @@
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-lg">
                         <div class="border-l border-zafra-gold/40 pl-6 py-2">
-                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Tradición</span>
-                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Recetas auténticas milenarias</span>
+                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Dos Culturas</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Líbano y Marruecos en una misma mesa</span>
                         </div>
                         <div class="border-l border-zafra-gold/40 pl-6 py-2">
-                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Memorable</span>
-                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Una experiencia sensorial única</span>
+                            <span class="text-zafra-gold text-3xl font-serif block mb-1">Excelencia</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Cocina cuidada y hospitalidad en cada detalle</span>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
     </section>
 
     <!-- Nueva Sección: LA CARTA DIGITAL -->
-    <section id="carta" class="py-24 bg-[#0d0d0f] border-y gold-border">
+    <section id="carta" class="py-24 bg-[#EDE0CE] border-y gold-border">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-4 font-bold">Experiencia Gastronómica</span>
@@ -232,24 +232,24 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="review-card p-10 fade-in">
-                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"El ambiente es inmejorable. Un lugar perfecto para cenar y luego disfrutar de una buena shisha en Madrid."</p>
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">“Un lugar especial en el que compartir un momento muy agradable. Vivir una cultura en pleno corazón de Madrid. Repetiremos.”</p>
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-px bg-zafra-gold"></div>
-                        <span class="uppercase tracking-widest text-[9px] font-bold">Pablo R.</span>
+                        <span class="uppercase tracking-widest text-[9px] font-bold">Cristina A.</span>
                     </div>
                 </div>
                 <div class="review-card p-10 fade-in" style="transition-delay: 0.2s;">
-                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Las mejores shishas de la zona del Retiro. Servicio atento y decoración de diez."</p>
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">“Una suerte tener en nuestro barrio un restaurante como este. Comida exquisita, bien presentada y muy bien atendidos. ¡Volveremos!”</p>
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-px bg-zafra-gold"></div>
-                        <span class="uppercase tracking-widest text-[9px] font-bold">María G.</span>
+                        <span class="uppercase tracking-widest text-[9px] font-bold">Encarna L.</span>
                     </div>
                 </div>
                 <div class="review-card p-10 fade-in" style="transition-delay: 0.4s;">
-                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Un descubrimiento. La comida sorprende gratamente y las copas están muy bien preparadas."</p>
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">“Un trato especial y la comida riquísima. ¡Me recuerda a los mejores tiempos en Beirut!”</p>
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-px bg-zafra-gold"></div>
-                        <span class="uppercase tracking-widest text-[9px] font-bold">Javier M.</span>
+                        <span class="uppercase tracking-widest text-[9px] font-bold">Rita R.</span>
                     </div>
                 </div>
             </div>
@@ -278,10 +278,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="lg:w-2/3 w-full h-[500px] border border-zafra-gold/20 grayscale invert-[0.9] fade-in shadow-2xl overflow-hidden rounded-sm">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.3032588147814!2d-3.671048823441!3d40.40216747144111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422616216f9f5b%3A0xe54d682496d67b7b!2sC.%20del%20Dr.%20Esquerdo%2C%20140%2C%20Retiro%2C%2028007%20Madrid!5e0!3m2!1ses!2ses!4v1712345678901!5m2!1ses!2ses" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="lg:w-2/3 w-full fade-in shadow-2xl overflow-hidden rounded-sm">
+                    <iframe title="Mapa de Zafra Restaurant &amp; Lounge" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.6760%2C40.3990%2C-3.6660%2C40.4055&amp;layer=mapnik&amp;marker=40.402167%2C-3.671049" width="100%" height="470" style="border:1px solid #c8a96a;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="flex flex-wrap gap-4 justify-center p-5 bg-[#EDE0CE]">
+                        <a class="text-xs uppercase tracking-widest underline underline-offset-4" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Doctor+Esquerdo+140+Madrid" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
+                        <a class="text-xs uppercase tracking-widest underline underline-offset-4" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+Doctor+Esquerdo+140+Madrid" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -291,7 +293,7 @@
     <footer class="py-16 bg-zafra-black border-t gold-border">
         <div class="container mx-auto px-6 text-center">
             <img src="https://i.postimg.cc/XZQpX5vP/Logo-de-Zafra.png" alt="Zafra Footer" class="h-10 mx-auto mb-8 opacity-50">
-            <p class="text-zafra-white/20 text-[8px] uppercase tracking-[0.4em]">© 2025 Zafra Madrid | Elegancia y Distinción</p>
+            <p class="text-zafra-white/20 text-[8px] uppercase tracking-[0.4em]">© 2027 Zafra Restaurant &amp; Lounge</p>
         </div>
     </footer>
 
