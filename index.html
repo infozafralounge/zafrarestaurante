@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zafra | Restaurant & Lounge - Experiencia Premium en Madrid</title>
-    <meta name="description" content="Zafra en Madrid. Restaurante de alta cocina de Oriente Medio, ambiente lounge exclusivo y shishas premium. Ubicado en C. del Dr. Esquerdo 140, Retiro.">
+    <title>Zafra | Restaurant & Lounge - Diseño crema uniforme y dorado</title>
+    <meta name="description" content="Zafra en Madrid. Restaurante de cocina libanesa y marroquí con ambiente lounge exclusivo. Ubicado en C. del Dr. Esquerdo 140, Retiro.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,14 +15,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
-        tailwind.config = {
+        if (window.tailwind) tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'zafra-black': '#F2E8D9',
-                        'zafra-gold': '#c8a96a',
-                        'zafra-gold-light': '#e0c58e',
-                        'zafra-white': '#352A22',
+                        'zafra-black': '#f2e8d9',
+                        'zafra-gold': '#927035',
+                        'zafra-gold-light': '#b99856',
+                        'zafra-white': '#55402b',
                     },
                     fontFamily: {
                         'serif': ['"Cormorant Garamond"', 'serif'],
@@ -35,25 +35,36 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { background-color: #F2E8D9; color: #352A22; overflow-x: hidden; }
+        body { background-color: #f2e8d9; color: #55402b; overflow-x: hidden; }
         
         .premium-blur { backdrop-filter: blur(12px); background-color: rgba(242, 232, 217, 0.96); }
         .gold-border { border-color: rgba(200, 169, 106, 0.25); }
-        .text-gradient { background: linear-gradient(135deg, #a7803f 0%, #533b24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient { background: linear-gradient(135deg, #c8a96a 0%, #f3f0ea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .fade-in { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.21, 0.6, 0.35, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .img-card { overflow: hidden; position: relative; background: #e4d7c5; border: 1px solid rgba(200, 169, 106, 0.1); }
+        .img-card { overflow: hidden; position: relative; background: #151518; border: 1px solid rgba(200, 169, 106, 0.1); }
         .img-premium { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .photo-tile { position:relative; border:1px solid rgba(200,169,106,.19); overflow:hidden; background:#151518; display:block; cursor:pointer; width:100%; text-align:left; }
+        .photo-tile img { width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
+        .photo-tile:hover img { transform:scale(1.065); }
+        .photo-tile::after { content:""; position:absolute; inset:45% 0 0 0; background:linear-gradient(transparent,rgba(0,0,0,.73)); pointer-events:none; }
+        .photo-label { position:absolute; z-index:1; bottom:14px; left:18px; right:18px; color:#f3f0ea; font-family:"Cormorant Garamond",serif; font-size:1.3rem; text-shadow:0 2px 12px #000; }
+        #lightbox { background:rgba(0,0,0,.96); }
+        #lightbox.open { display:flex; }
+        #lightbox-img { max-height:90vh; max-width:min(94vw,1200px); width:auto; height:auto; }
+        .photo-tile:focus-visible { outline:2px solid #e0c58e; outline-offset:3px; }
+        @media(prefers-reduced-motion:reduce){.photo-tile img{transition:none}}
+
 
         .hero-bg-container { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-        .hero-bg-image { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transform: scale(1.05); }
+        .hero-bg-image { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.43); transform: scale(1.05); object-position: 50% 42%; }
 
         .btn-gold { background: #c8a96a; color: #0b0b0d; transition: all 0.4s ease; position: relative; z-index: 1; }
         .btn-gold:hover { background: #e0c58e; box-shadow: 0 10px 20px rgba(200, 169, 106, 0.2); transform: translateY(-2px); }
 
-        .review-card { background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(200, 169, 106, 0.1); backdrop-filter: blur(5px); }
+        .review-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(200, 169, 106, 0.1); backdrop-filter: blur(5px); }
 
         .wa-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); z-index: 100; transition: all 0.3s ease; }
 
@@ -66,7 +77,85 @@
             .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
             .mobile-menu.open { transform: translateX(0); }
         }
-    </style>
+
+        /* ZAFRA: TODO EL SITIO EN EL CREMA DE LA CARTA (#f2e8d9).
+           La maquetacion y las fotografias son las mismas que en el modelo negro. */
+        :root {
+            --crema: #f2e8d9;
+            --crema-suave: #fffaf1;
+            --crema-oscuro: #f2e8d9;
+            --dorado: #927035;
+            --dorado-claro: #c5a46b;
+            --dorado-borde: #d8c39b;
+            --texto: #55402b;
+        }
+        body { background: var(--crema); color: var(--texto); }
+        .premium-blur { background: rgba(242, 232, 217, .96); backdrop-filter: blur(16px); }
+        .gold-border { border-color: rgba(151, 109, 47, .24); }
+        .text-gradient {
+            background: linear-gradient(110deg, #785521 0%, #b28c49 58%, #d4b87e 100%);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .img-card { background: #f1e6d4; border-color: rgba(146, 112, 53, .22); box-shadow: 0 22px 45px rgba(80, 55, 22, .11); }
+        .photo-tile { background: #e9d9be; border-color: rgba(146, 112, 53, .35); box-shadow: 0 6px 20px rgba(74, 47, 13, .08); }
+        .photo-label { color:#fff9eb; }
+        .btn-gold { background:#926d2e; color:#fffaf1; box-shadow: 0 6px 18px rgba(94, 58, 14, .12); }
+        .btn-gold:hover { background:#aa8748; color:#fffaf1; box-shadow:0 10px 26px rgba(94, 58, 14, .18); }
+        /* Titulares y precios dorados; descripciones en marron para que sean faciles de leer. */
+        section:not(.hero-main) h2,
+        section:not(.hero-main) h3,
+        section:not(.hero-main) h4 { color:var(--dorado); }
+        #menu-container .menu-item h4, #menu-container .menu-item span { color:#8c682d; }
+        #menu-container .menu-item p { color:#65503b; }
+        #menu-container .menu-item { border-bottom:1px solid rgba(146,112,53,.18); }
+        #menu-container .menu-item .text-zafra-white\/40 { color:#65503b; }
+        #carta { background:var(--crema-oscuro); }
+        #carta .menu-tab { color:#7a6247; }
+        #carta .menu-tab:hover { color:var(--dorado); }
+        #carta .menu-tab.active { color:var(--dorado); border-bottom-color:var(--dorado); }
+        #carta p.text-zafra-white\/30 { color:#77614a; }
+        #carta a { color:var(--dorado); border-color:rgba(146,112,53,.48); }
+        #carta a:hover { background:#926d2e; color:#fffaf1; }
+        .review-card { background:#fffaf2; border:1px solid rgba(146,112,53,.25); box-shadow:0 12px 28px rgba(94,58,14,.055); }
+        .review-card p { color:#5c4831; }
+        /* La imagen de portada conserva un velo oscuro solo para resaltar el dorado sobre la fotografia. */
+        .hero-main .hero-bg-image { filter:brightness(.58); }
+        .hero-main h1 { color:#f3d79c; text-shadow:0 4px 18px rgba(14,7,0,.45); }
+        .hero-main .text-zafra-gold { color:#e6c287; }
+        .hero-main a:not(.btn-gold) { color:#fff4db; border-color:rgba(255,246,225,.6); }
+        .hero-main a:not(.btn-gold):hover { background:rgba(255,246,225,.14); }
+        .hero-main .btn-gold { background:#d1ad6d; color:#362409; }
+        .hero-main .btn-gold:hover { background:#e0c48e; }
+        .mobile-menu { background:var(--crema); }
+        #ubicacion p { color:#58432b; }
+        footer p { color:#8d775f; }
+        #lightbox { background:rgba(21,14,8,.96); }
+        #lightbox-close { color:#e8ca8c; }
+        a:focus-visible, button:focus-visible { outline:2px solid #98752f; outline-offset:3px; }
+    
+
+        /* Mapa de ubicación: visible y funcional en todas las pantallas. */
+        .zafra-map-wrap { height: 500px; background: #e6d9c5; }
+        .zafra-map-frame { display: block; width: 100%; height: 100%; border: 0; }
+        @media (max-width: 768px) { .zafra-map-wrap { height: 360px; } }
+    
+/* El plano orientativo es un SVG integrado: siempre visible, incluso sin red.
+   El iframe de OpenStreetMap puede abrirse opcionalmente y no bloquea el plano. */
+.zafra-map-static { background: #eee7da; min-height: 280px; }
+.zafra-location-plan { display: block; width: 100%; height: auto; aspect-ratio: 800 / 470; }
+.zafra-map-secondary-btn { color: #805f2a; border: 1px solid #ab8b54; background: #fff8ec; text-decoration: none; }
+.zafra-map-secondary-btn:hover { background: #f1e5d1; }
+.zafra-map-expand summary { color: #805f2a; padding: 12px 2px; }
+.zafra-map-expand summary:hover { color: #563d16; }
+.zafra-live-map-shell { height: 380px; background: #e9ddc9; }
+.zafra-map-help,.zafra-osm-credit { color: #746047; }
+@media(max-width:640px) {
+ .zafra-map-static { min-height: 0; }
+ .zafra-location-plan { min-height: 235px; }
+ .zafra-live-map-shell { height: 325px; }
+}
+</style>
 </head>
 <body class="font-sans font-light">
 
@@ -74,13 +163,13 @@
     <header class="fixed top-0 left-0 w-full z-50 premium-blur border-b gold-border transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
-                <img src="https://i.postimg.cc/XZQpX5vP/Logo-de-Zafra.png" alt="Zafra Logo" class="h-10 md:h-14">
+                <img src="assets/zafra-logo.svg" alt="Zafra Restaurant & Lounge" class="h-14 md:h-16" width="64" height="64">
             </a>
 
             <ul class="hidden lg:flex space-x-8 text-[11px] uppercase tracking-[0.25em] font-medium text-zafra-white/70">
                 <li><a href="#sobre-nosotros" class="hover:text-zafra-gold transition-colors">Sobre Zafra</a></li>
                 <li><a href="#carta" class="hover:text-zafra-gold transition-colors">La Carta</a></li>
-                <li><a href="#lounge" class="hover:text-zafra-gold transition-colors">Lounge & Shishas</a></li>
+                <li><a href="#galeria" class="hover:text-zafra-gold transition-colors">Galería</a></li>
                 <li><a href="#reseñas" class="hover:text-zafra-gold transition-colors">Reseñas</a></li>
                 <li><a href="#ubicacion" class="hover:text-zafra-gold transition-colors">Ubicación</a></li>
             </ul>
@@ -110,25 +199,26 @@
             <li><a href="#sobre-nosotros" onclick="closeMenu()">Sobre Zafra</a></li>
             <li><a href="#restaurante" onclick="closeMenu()">Restaurante</a></li>
             <li><a href="#carta" onclick="closeMenu()">La Carta</a></li>
-            <li><a href="#lounge" onclick="closeMenu()">Lounge & Shishas</a></li>
+            <li><a href="#galeria" onclick="closeMenu()">Galería</a></li>
+            <li><a href="#reseñas" onclick="closeMenu()">Reseñas</a></li>
             <li><a href="#ubicacion" onclick="closeMenu()">Ubicación</a></li>
         </ul>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-zafra-black">
+    <section class="hero-main relative h-screen flex items-center justify-center overflow-hidden bg-zafra-black">
         <div class="hero-bg-container">
-            <img src="https://i.postimg.cc/Hxpsw6Ks/Chat-GPT-Image-7-ene-2026-23-11-25.png" alt="Zafra Hero" class="hero-bg-image">
+            <img fetchpriority="high" src="assets/portada.webp" alt="Salón de Zafra con lámpara y decoración dorada" class="hero-bg-image">
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
         
-        <div class="relative z-10 text-center fade-in visible px-6 text-white">
+        <div class="relative z-10 text-center fade-in visible px-6">
             <span class="text-zafra-gold text-[10px] md:text-xs uppercase tracking-[0.6em] mb-4 block font-bold">Madrid · Retiro</span>
-            <h1 class="font-serif text-7xl md:text-9xl mb-2 tracking-tight drop-shadow-2xl text-white">Zafra</h1>
+            <h1 class="font-serif text-7xl md:text-9xl mb-2 tracking-tight drop-shadow-2xl">Zafra</h1>
             <p class="text-zafra-gold text-sm md:text-xl uppercase tracking-[0.3em] font-light mb-12 italic drop-shadow-lg">Restaurant & Lounge</p>
             <div class="flex flex-col md:flex-row gap-6 justify-center">
                 <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold rounded-sm">Reservar ahora</a>
-                <a href="#carta" class="text-white border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Ver la Carta</a>
+                <a href="#carta" class="border border-white/30 px-12 py-5 uppercase text-[10px] tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white/10 transition-all rounded-sm">Ver la Carta</a>
             </div>
         </div>
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
@@ -149,17 +239,17 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-lg">
                         <div class="border-l border-zafra-gold/40 pl-6 py-2">
                             <span class="text-zafra-gold text-3xl font-serif block mb-1">Dos Culturas</span>
-                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Líbano y Marruecos en una misma mesa</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">La esencia del Líbano y Marruecos en cada plato</span>
                         </div>
                         <div class="border-l border-zafra-gold/40 pl-6 py-2">
                             <span class="text-zafra-gold text-3xl font-serif block mb-1">Excelencia</span>
-                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Cocina cuidada y hospitalidad en cada detalle</span>
+                            <span class="text-[9px] uppercase tracking-widest text-zafra-white/40 font-medium">Pasión por la gastronomía y atención a cada detalle</span>
                         </div>
                     </div>
                 </div>
                 <div class="lg:w-1/2 fade-in order-1 lg:order-2 w-full">
                     <div class="img-card w-full aspect-[3/4] shadow-2xl rounded-sm">
-                        <img src="https://i.postimg.cc/MTWK794p/Chat-GPT-Image-7-ene-2026-23-09-39.png" alt="Ambiente Zafra" class="img-premium">
+                        <img loading="lazy" src="assets/comedor.webp" alt="Comedor de Zafra preparado para los comensales" class="img-premium">
                     </div>
                 </div>
             </div>
@@ -167,7 +257,7 @@
     </section>
 
     <!-- Nueva Sección: LA CARTA DIGITAL -->
-    <section id="carta" class="py-24 bg-[#EDE0CE] border-y gold-border">
+    <section id="carta" class="py-24 bg-[#f2e8d9] border-y gold-border">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-4 font-bold">Experiencia Gastronómica</span>
@@ -178,9 +268,12 @@
                 <div class="flex flex-wrap justify-center gap-6 md:gap-10 overflow-x-auto pb-4 no-scrollbar">
                     <button onclick="filterMenu('entrantes')" class="menu-tab active uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-entrantes">Entrantes</button>
                     <button onclick="filterMenu('ensaladas')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-ensaladas">Ensaladas</button>
-                    <button onclick="filterMenu('parrilla')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-parrilla">Parrilla</button>
                     <button onclick="filterMenu('especialidades')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-especialidades">Especialidades</button>
+                    <button onclick="filterMenu('parrilla')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-parrilla">Parrilla</button>
+                    <button onclick="filterMenu('degustacion')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-degustacion">Menú degustación</button>
+                    <button onclick="filterMenu('acompanamientos')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-acompanamientos">Acompañamientos</button>
                     <button onclick="filterMenu('postres')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-postres">Postres</button>
+                    <button onclick="filterMenu('bebidas')" class="menu-tab uppercase text-[10px] tracking-[0.3em] font-bold pb-2" id="tab-bebidas">Bebidas</button>
                 </div>
             </div>
 
@@ -196,28 +289,80 @@
         </div>
     </section>
 
-    <!-- Lounge & Shishas -->
-    <section id="lounge" class="py-32 bg-zafra-black">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col-reverse lg:flex-row items-center gap-20">
-                <div class="lg:w-1/2 grid grid-cols-2 gap-6 fade-in max-w-lg">
-                    <div class="img-card aspect-[3/4] mt-12 shadow-2xl">
-                        <img src="https://i.postimg.cc/xC0Tv67c/Imagen-Zafra-6.png" alt="Shisha Premium" class="img-premium">
-                    </div>
-                    <div class="img-card aspect-[3/4] shadow-2xl">
-                        <img src="https://i.postimg.cc/FR9syTqF/Chat-GPT-Image-7-ene-2026-23-12-59.png" alt="Cócteles Lounge" class="img-premium">
-                    </div>
-                </div>
-                <div class="lg:w-1/2 fade-in">
-                    <span class="text-zafra-gold uppercase tracking-[0.4em] text-[10px] block mb-6 font-bold">The Lounge Experience</span>
-                    <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">Shishas & <br><span class="italic text-gradient">Noches Eternas</span></h2>
-                    <p class="text-zafra-white/70 leading-relaxed mb-10 text-xl font-light">
-                        Disfruta de las mejores shishas de Madrid en un ambiente sofisticado. Una carta de tabacos premium y coctelería de autor para cerrar la noche.
-                    </p>
-                    <a href="https://wa.me/34654032099" class="btn-gold px-12 py-5 uppercase text-[10px] tracking-widest font-bold inline-block">Reservar Shisha</a>
-                </div>
-            </div>
-        </div>
+
+    <!-- Fotografías originales de Zafra; sustituyen al antiguo apartado eliminado. -->
+    <section id="galeria" class="py-24 lg:py-28 bg-zafra-black border-y gold-border" aria-labelledby="galeria-title">
+       <div class="container mx-auto px-6">
+         <div class="text-center mb-14 fade-in">
+           <span class="text-zafra-gold uppercase tracking-[.4em] text-[10px] block mb-4 font-bold">Descubre nuestro espacio</span>
+           <h2 id="galeria-title" class="font-serif text-5xl md:text-6xl mb-5">La esencia de Zafra</h2>
+           <div class="w-16 h-px bg-zafra-gold mx-auto"></div>
+         </div>
+         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mb-16 fade-in">
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Nuestro restaurante')" aria-label="Ampliar fotografía: Nuestro restaurante">
+    <img loading="lazy" src="assets/portada.webp" alt="Nuestro restaurante" width="820" height="720">
+    <span class="photo-label">Nuestro restaurante</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'La barra')" aria-label="Ampliar fotografía: La barra">
+    <img loading="lazy" src="assets/barra.webp" alt="La barra" width="820" height="720">
+    <span class="photo-label">La barra</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Los detalles de Zafra')" aria-label="Ampliar fotografía: Los detalles de Zafra">
+    <img loading="lazy" src="assets/detalles.webp" alt="Los detalles de Zafra" width="820" height="720">
+    <span class="photo-label">Los detalles de Zafra</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'El comedor')" aria-label="Ampliar fotografía: El comedor">
+    <img loading="lazy" src="assets/comedor.webp" alt="El comedor" width="820" height="720">
+    <span class="photo-label">El comedor</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Espacios de Zafra')" aria-label="Ampliar fotografía: Espacios de Zafra">
+    <img loading="lazy" src="assets/espacios.webp" alt="Espacios de Zafra" width="820" height="720">
+    <span class="photo-label">Espacios de Zafra</span>
+</button>
+         </div>
+         <div class="text-center mb-10 fade-in">
+           <span class="text-zafra-gold uppercase tracking-[.4em] text-[10px] block mb-4 font-bold">Tradición y sabor</span>
+           <h3 class="font-serif text-4xl md:text-5xl">Nuestra cocina en imágenes</h3>
+         </div>
+         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 fade-in">
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Entrantes para compartir')" aria-label="Ampliar fotografía: Entrantes para compartir">
+    <img loading="lazy" src="assets/entrantes.webp" alt="Entrantes para compartir" width="820" height="720">
+    <span class="photo-label">Entrantes para compartir</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Briwat de pollo')" aria-label="Ampliar fotografía: Briwat de pollo">
+    <img loading="lazy" src="assets/briwat-pollo.webp" alt="Briwat de pollo" width="820" height="720">
+    <span class="photo-label">Briwat de pollo</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Hummus de Zafra')" aria-label="Ampliar fotografía: Hummus de Zafra">
+    <img loading="lazy" src="assets/hummus.webp" alt="Hummus de Zafra" width="820" height="720">
+    <span class="photo-label">Hummus de Zafra</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Cocina a la parrilla')" aria-label="Ampliar fotografía: Cocina a la parrilla">
+    <img loading="lazy" src="assets/parrilla.webp" alt="Cocina a la parrilla" width="820" height="720">
+    <span class="photo-label">Cocina a la parrilla</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Sabores del Líbano')" aria-label="Ampliar fotografía: Sabores del Líbano">
+    <img loading="lazy" src="assets/sabores-libano.webp" alt="Sabores del Líbano" width="820" height="720">
+    <span class="photo-label">Sabores del Líbano</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Nuestra cocina fresca')" aria-label="Ampliar fotografía: Nuestra cocina fresca">
+    <img loading="lazy" src="assets/cocina-fresca.webp" alt="Nuestra cocina fresca" width="820" height="720">
+    <span class="photo-label">Nuestra cocina fresca</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Mesa gastronómica')" aria-label="Ampliar fotografía: Mesa gastronómica">
+    <img loading="lazy" src="assets/mesa-gastronomica.webp" alt="Mesa gastronómica" width="820" height="720">
+    <span class="photo-label">Mesa gastronómica</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Una especialidad de Zafra')" aria-label="Ampliar fotografía: Una especialidad de Zafra">
+    <img loading="lazy" src="assets/especialidad.webp" alt="Una especialidad de Zafra" width="820" height="720">
+    <span class="photo-label">Una especialidad de Zafra</span>
+</button>
+<button type="button" class="photo-tile rounded-sm  aspect-[4/5] md:aspect-[5/4]" onclick="openPhoto(this.querySelector('img').src, 'Cordero y tradición')" aria-label="Ampliar fotografía: Cordero y tradición">
+    <img loading="lazy" src="assets/cordero.webp" alt="Cordero y tradición" width="820" height="720">
+    <span class="photo-label">Cordero y tradición</span>
+</button>
+         </div>
+       </div>
     </section>
 
     <!-- Reseñas -->
@@ -232,21 +377,21 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="review-card p-10 fade-in">
-                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">“Un lugar especial en el que compartir un momento muy agradable. Vivir una cultura en pleno corazón de Madrid. Repetiremos.”</p>
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Un lugar especial en el que compartir un momento muy agradable. Vivir una cultura en pleno corazón de Madrid. Repetiremos."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-px bg-zafra-gold"></div>
                         <span class="uppercase tracking-widest text-[9px] font-bold">Cristina A.</span>
                     </div>
                 </div>
                 <div class="review-card p-10 fade-in" style="transition-delay: 0.2s;">
-                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">“Una suerte tener en nuestro barrio un restaurante como este. Comida exquisita, bien presentada y muy bien atendidos. ¡Volveremos!”</p>
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Una suerte tener en nuestro barrio un restaurante como este. Comida exquisita, bien presentada y muy bien atendidos. ¡Volveremos!"</p>
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-px bg-zafra-gold"></div>
                         <span class="uppercase tracking-widest text-[9px] font-bold">Encarna L.</span>
                     </div>
                 </div>
                 <div class="review-card p-10 fade-in" style="transition-delay: 0.4s;">
-                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">“Un trato especial y la comida riquísima. ¡Me recuerda a los mejores tiempos en Beirut!”</p>
+                    <p class="italic text-zafra-white/80 mb-6 font-serif text-lg leading-relaxed">"Un trato especial y la comida riquísima. ¡Me recuerda a los mejores tiempos en Beirut!"</p>
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-px bg-zafra-gold"></div>
                         <span class="uppercase tracking-widest text-[9px] font-bold">Rita R.</span>
@@ -278,13 +423,79 @@
                         </div>
                     </div>
                 </div>
-                <div class="lg:w-2/3 w-full fade-in shadow-2xl overflow-hidden rounded-sm">
-                    <iframe title="Mapa de Zafra Restaurant &amp; Lounge" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.6760%2C40.3990%2C-3.6660%2C40.4055&amp;layer=mapnik&amp;marker=40.402167%2C-3.671049" width="100%" height="470" style="border:1px solid #c8a96a;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div class="flex flex-wrap gap-4 justify-center p-5 bg-[#EDE0CE]">
-                        <a class="text-xs uppercase tracking-widest underline underline-offset-4" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Doctor+Esquerdo+140+Madrid" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
-                        <a class="text-xs uppercase tracking-widest underline underline-offset-4" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+Doctor+Esquerdo+140+Madrid" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
-                    </div>
-                </div>
+                <div class="lg:w-2/3 w-full">
+  <div class="zafra-map-static border border-zafra-gold/20 shadow-2xl overflow-hidden rounded-sm" aria-label="Plano de ubicación de Zafra">
+    <svg class="zafra-location-plan" viewBox="0 0 800 470" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="zafra-plan-title zafra-plan-desc">
+ <title id="zafra-plan-title">Plano orientativo de Zafra, calle Doctor Esquerdo 140</title>
+ <desc id="zafra-plan-desc">Esquema de referencia con la calle Doctor Esquerdo, calle Cavanilles, avenida del Mediterráneo y la zona de Conde de Casal. No está a escala.</desc>
+ <rect width="800" height="470" fill="#eee7da"/>
+ <g fill="#e0dacb" stroke="#d1c8b6" stroke-width="2">
+   <rect x="20" y="16" width="190" height="105" rx="9"/>
+   <rect x="226" y="16" width="128" height="105" rx="9"/>
+   <rect x="480" y="16" width="290" height="105" rx="9"/>
+   <rect x="18" y="202" width="145" height="115" rx="9"/>
+   <rect x="180" y="202" width="173" height="115" rx="9"/>
+   <rect x="480" y="202" width="128" height="115" rx="9"/>
+   <rect x="627" y="202" width="153" height="115" rx="9"/>
+   <rect x="18" y="397" width="335" height="59" rx="9"/>
+   <rect x="480" y="397" width="145" height="59" rx="9"/>
+ </g>
+ <g fill="none" stroke="#fffaf0" stroke-linecap="square">
+   <path d="M 0 165 H 800" stroke-width="58"/>
+   <path d="M 0 359 H 800" stroke-width="64"/>
+   <path d="M 419 0 V 470" stroke-width="95"/>
+ </g>
+ <g fill="none" stroke="#d7c29d" stroke-width="2" stroke-dasharray="8 8" opacity=".8">
+   <path d="M 0 165 H 800"/>
+   <path d="M 0 359 H 800"/>
+   <path d="M 419 0 V 470"/>
+ </g>
+ <g fill="#6e6050" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="16">
+   <text x="90" y="156">Calle de Cavanilles</text>
+   <text x="64" y="348">Avenida del Mediterráneo</text>
+   <text x="430" y="22" transform="rotate(90 430 22)">C. Doctor Esquerdo</text>
+ </g>
+ <g>
+    <rect x="600" y="403" width="180" height="39" rx="20" fill="#e3d4b7" stroke="#d4c4a7"/>
+    <circle cx="621" cy="423" r="13" fill="#d13b52"/>
+    <text x="621" y="427" fill="white" font-size="11" text-anchor="middle" font-family="Arial" font-weight="bold">M</text>
+    <text x="643" y="428" fill="#61513c" font-size="14" font-family="Arial">Conde de Casal</text>
+ </g>
+ <g transform="translate(419 240)">
+   <circle r="51" fill="#aa853e" opacity=".18"/>
+   <path d="M 0 -49 C -22 -49 -39 -31 -39 -10 C -39 15 0 61 0 61 C 0 61 39 15 39 -10 C 39 -31 22 -49 0 -49Z" fill="#926d2e" stroke="#fdf6e8" stroke-width="4"/>
+   <circle cy="-10" r="16" fill="#fff9ea"/>
+ </g>
+ <g>
+   <rect x="482" y="220" width="255" height="76" rx="12" fill="#fffaf0" stroke="#b4935b" stroke-width="1.8"/>
+   <text x="502" y="247" fill="#84632f" font-size="24" font-family="Cormorant Garamond, Georgia, serif" font-weight="bold">Zafra</text>
+   <text x="502" y="268" fill="#665644" font-size="14" font-family="Arial, sans-serif">Doctor Esquerdo, 140</text>
+ </g>
+ <g>
+   <circle cx="38" cy="40" r="24" fill="#fffaf0" stroke="#ceb98f"/>
+   <text x="38" y="33" fill="#967239" font-size="11" text-anchor="middle" font-family="Arial" font-weight="bold">N</text>
+   <path d="M38 38L30 54L38 50L46 54Z" fill="#967239"/>
+ </g>
+ <rect x="16" y="435" width="211" height="23" rx="5" fill="#fffaf0" opacity=".92"/>
+ <text x="25" y="451" fill="#776955" font-size="11.5" font-family="Arial, sans-serif">PLANO ORIENTATIVO · NO A ESCALA</text>
+</svg>
+  </div>
+  <div class="flex flex-wrap items-center justify-between gap-3 mt-5">
+     <span class="text-sm text-zafra-white/70">Calle del Doctor Esquerdo, 140 · 28007 Madrid</span>
+     <div class="flex gap-2 flex-wrap">
+       <a class="zafra-map-secondary-btn inline-flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-widest font-bold rounded-sm" href="https://www.google.com/maps/search/?api=1&query=Calle%20del%20Doctor%20Esquerdo%20140%2C%2028007%20Madrid%2C%20Espa%C3%B1a" target="_blank" rel="noopener noreferrer">Ver en Google Maps ↗</a>
+       <a class="btn-gold inline-flex items-center gap-2 px-6 py-3 text-xs uppercase tracking-widest font-bold rounded-sm" href="https://www.google.com/maps/dir/?api=1&destination=Calle%20del%20Doctor%20Esquerdo%20140%2C%2028007%20Madrid%2C%20Espa%C3%B1a" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a>
+     </div>
+  </div>
+  <details class="zafra-map-expand mt-5">
+    <summary class="cursor-pointer text-sm font-semibold">Ver mapa interactivo dentro de la web</summary>
+    <div class="zafra-live-map-shell mt-4 border border-zafra-gold/20 rounded-sm overflow-hidden">
+      <iframe title="Mapa interactivo de Zafra, Doctor Esquerdo 140, Madrid, mediante OpenStreetMap" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=-3.675556%2C40.402758%2C-3.667556%2C40.407758&layer=mapnik&marker=40.405258%2C-3.671556" width="100%" height="100%" style="border:0;display:block;"></iframe>
+    </div>
+    <p class="zafra-map-help mt-2 text-xs">Si el navegador bloquea el mapa interactivo en una vista previa, utiliza «Ver en Google Maps».</p>
+    <p class="zafra-osm-credit text-xs mt-1">Datos del mapa interactivo © colaboradores de OpenStreetMap.</p>
+  </details>
+</div>
             </div>
         </div>
     </section>
@@ -292,8 +503,8 @@
     <!-- Footer -->
     <footer class="py-16 bg-zafra-black border-t gold-border">
         <div class="container mx-auto px-6 text-center">
-            <img src="https://i.postimg.cc/XZQpX5vP/Logo-de-Zafra.png" alt="Zafra Footer" class="h-10 mx-auto mb-8 opacity-50">
-            <p class="text-zafra-white/20 text-[8px] uppercase tracking-[0.4em]">© 2027 Zafra Restaurant &amp; Lounge</p>
+            <img src="assets/zafra-logo.svg" alt="Zafra Restaurant & Lounge" class="h-24 mx-auto mb-8 opacity-80" width="96" height="96" loading="lazy">
+            <p class="text-zafra-white/20 text-[8px] uppercase tracking-[0.4em]">© 2027 Zafra Restaurant & Lounge</p>
         </div>
     </footer>
 
@@ -309,89 +520,534 @@
     </div>
 
     <script>
-        // Datos de la Carta digitalizados del PDF
+        // Carta y precios actualizados a partir de «CARTA ZAFRA v.f.pdf».
+        // Para cambiar un plato, edita su nombre, precio o descripción dentro de menuData.
         const menuData = {
-            entrantes: [
-                { name: "Hummus", price: "10€", desc: "Suave crema de garbanzos elaborada con sésamo y un delicado toque de aceite de oliva." },
-                { name: "Mutabbal", price: "10€", desc: "Crema de berenjenas ahumadas con salsa de sésamo y aceite de oliva." },
-                { name: "Muhammara", price: "10€", desc: "Pimientos rojos asados con nueces y esencia de granada." },
-                { name: "Warak Enab", price: "13€", desc: "Tiernos rollitos de hojas de parra rellenos de arroz, tomate y perejil." },
-                { name: "Kibbeh Makliyeh", price: "13€", desc: "Croquetas de masa de trigo rellenas de cordero picado y piñones." },
-                { name: "Falafel", price: "9€", desc: "Crujientes bolitas de garbanzos y hierbas frescas con especias tradicionales." },
-                { name: "Rakayek de queso", price: "10€", desc: "Masa filo rellena de queso Feta y Halloumi." },
-                { name: "Trío Libanés", price: "17€", desc: "Surtido de Hummus, Mutabbal y Muhammarah." }
+            "entrantes": [
+                        {
+                                    "title": "Entrantes fríos",
+                                    "items": [
+                                                {
+                                                            "name": "Baba Ganush",
+                                                            "price": "10 €",
+                                                            "desc": "Crema de berenjenas ahumadas, finamente picadas y mezcladas con salsa de sésamo y un delicado toque de aceite de oliva."
+                                                },
+                                                {
+                                                            "name": "Muhammara",
+                                                            "price": "10 €",
+                                                            "desc": "Pimientos rojos asados y finamente picados con nueces, aderezados con esencia de granada y un toque de aceite de oliva."
+                                                },
+                                                {
+                                                            "name": "Hummus",
+                                                            "price": "10 €",
+                                                            "desc": "Suave crema de garbanzos elaborada con sésamo y un delicado toque de aceite de oliva."
+                                                },
+                                                {
+                                                            "name": "Hummus de Pesto y Pistacho",
+                                                            "price": "13 €",
+                                                            "desc": "Hummus de garbanzos con tahini, albahaca, pistachos, limón y aceite de oliva."
+                                                },
+                                                {
+                                                            "name": "Trío Libanés",
+                                                            "price": "17 €",
+                                                            "desc": "Surtido de Hummus, Mutabbal y Muhammarah."
+                                                },
+                                                {
+                                                            "name": "Warak enab",
+                                                            "price": "13 €",
+                                                            "desc": "Hojas de parra rellenas de arroz, tomate y perejil, cocinadas lentamente con limón y aceite de oliva."
+                                                },
+                                                {
+                                                            "name": "Fatteh de berenjena",
+                                                            "price": "12 €",
+                                                            "desc": "Berenjena asada sobre pan tostado, con yogur cremoso, piñones y un toque de albahaca."
+                                                },
+                                                {
+                                                            "name": "Arnabeet Tahini",
+                                                            "price": "13 €",
+                                                            "desc": "Coliflor asada al horno, acompañada de cremosa salsa de tahini y un toque de especias."
+                                                }
+                                    ]
+                        },
+                        {
+                                    "title": "Entrantes calientes",
+                                    "items": [
+                                                {
+                                                            "name": "Hummus Ras Asfour",
+                                                            "price": "14 €",
+                                                            "desc": "Hummus cremoso coronado con ternera, salsa de granada y piñones tostados."
+                                                },
+                                                {
+                                                            "name": "Kibbeh Makliyeh",
+                                                            "price": "13 €",
+                                                            "desc": "Croquetas de masa de trigo rellenas de cordero picado y piñones."
+                                                },
+                                                {
+                                                            "name": "Rakayek de queso",
+                                                            "price": "10 €",
+                                                            "desc": "Delgadas capas de masa filo rellenas de queso Feta y Halloumi."
+                                                },
+                                                {
+                                                            "name": "Briwat de pollo",
+                                                            "price": "12 €",
+                                                            "desc": "Crujiente masa filo rellena de pollo especiado."
+                                                },
+                                                {
+                                                            "name": "Briwat de marisco y pescado",
+                                                            "price": "13 €",
+                                                            "desc": "Crujiente masa filo rellena de marisco, pescado y fideos."
+                                                },
+                                                {
+                                                            "name": "Fatayer de espinacas",
+                                                            "price": "9,50 €",
+                                                            "desc": "Empanada libanesa rellena de espinacas frescas, sazonadas con limón, aceite de oliva y un toque de sumac."
+                                                },
+                                                {
+                                                            "name": "Halloumi a la parrilla",
+                                                            "price": "13 €",
+                                                            "desc": "Queso Halloumi a la parrilla acompañado con tomate fresco y orégano."
+                                                },
+                                                {
+                                                            "name": "Faláfel",
+                                                            "price": "9 €",
+                                                            "desc": "Crujientes bolitas de garbanzos y hierbas frescas con especias de Oriente Medio."
+                                                },
+                                                {
+                                                            "name": "Batata Harra",
+                                                            "price": "8,50 €",
+                                                            "desc": "Patatas sazonadas con ajo, cilantro y especias picantes."
+                                                },
+                                                {
+                                                            "name": "Degustación de entrantes libaneses (4 personas)",
+                                                            "price": "60 €",
+                                                            "desc": "Hummus, Baba Ganush, Muhammarah, Tabboule, Kibbeh Makliyeh, Falafel y Rakayek de queso.",
+                                                            "fullWidth": true
+                                                },
+                                                {
+                                                            "name": "Degustación de entrantes marroquís (4 personas)",
+                                                            "price": "57 €",
+                                                            "desc": "Chakchouka, Zaalouk, ensalada templada de zanahoria, ensalada templada de judías verdes, Briwat de pollo y de marisco y Rakayek de queso.",
+                                                            "fullWidth": true
+                                                }
+                                    ]
+                        },
+                        {
+                                    "title": "Sopas",
+                                    "items": [
+                                                {
+                                                            "name": "Sopa de lentejas",
+                                                            "price": "6 €",
+                                                            "desc": "Sopa tradicional de lentejas rojas, aromatizada con verduras frescas y especias tradicionales."
+                                                },
+                                                {
+                                                            "name": "Harera",
+                                                            "price": "7 €",
+                                                            "desc": "Sopa de tomate con garbanzos, ternera y apio, aromatizada con especias."
+                                                }
+                                    ]
+                        }
             ],
-            ensaladas: [
-                { name: "Tabboule", price: "10€", desc: "Perejil fresco picado, bulgur hidratado, tomate, cebolla, hierbabuena y limón." },
-                { name: "Fattoush", price: "10€", desc: "Lechugas, tomate, pepino, rábano, rúcula, granada y pan tostado." },
-                { name: "Labneh con Makdus", price: "9€", desc: "Suave labneh casero con berenjena caramelizada y nueces." },
-                { name: "Ensalada Raheb", price: "10€", desc: "Berenjenas asadas con pimientos, granada, cebolla y ajo." },
-                { name: "Arnabeet Tahini", price: "13€", desc: "Coliflor asada al horno con salsa de tahini y especias." }
+            "ensaladas": [
+                        {
+                                    "title": "Ensaladas libanesas",
+                                    "items": [
+                                                {
+                                                            "name": "Tabboule",
+                                                            "price": "11 €",
+                                                            "desc": "Perejil fresco picado, bulgur hidratado, tomate, cebolla, hierbabuena, limón, aceite de oliva, sal y pimienta."
+                                                },
+                                                {
+                                                            "name": "Fattoush",
+                                                            "price": "11 €",
+                                                            "desc": "Mezcla fresca de lechugas, tomate, pepino, rábano y rúcula, acompañada de granada, hierbabuena y crujiente pan tostado."
+                                                },
+                                                {
+                                                            "name": "Passion Halloumi",
+                                                            "price": "14 €",
+                                                            "desc": "Rúcula, quinoa, queso halloumi, zanahoria, remolacha y cebolla, aderezado con una vinagreta de sal, mostaza y miel."
+                                                }
+                                    ]
+                        },
+                        {
+                                    "title": "Ensaladas marroquís",
+                                    "items": [
+                                                {
+                                                            "name": "Chakchouka",
+                                                            "price": "10 €",
+                                                            "desc": "Ensalada templada de tomate y pimientos asados, cocinados lentamente con ajo, especias y aceite de oliva."
+                                                },
+                                                {
+                                                            "name": "Zaalouk",
+                                                            "price": "12 €",
+                                                            "desc": "Pisto marroquí de berenjena y tomate asado con especias."
+                                                }
+                                    ]
+                        }
             ],
-            parrilla: [
-                { name: "Mix Grill", price: "23€", desc: "Selección de pinchos de solomillo de ternera, pollo y kafta." },
-                { name: "Lahem Mashwi", price: "21€", desc: "Pinchos de solomillo de ternera a la parrilla." },
-                { name: "Shish Taouk", price: "19€", desc: "Pinchos de pollo marinados en especias, limón y aceite de oliva." },
-                { name: "Kafta Khachkhach", price: "20€", desc: "Carne picada con hierbas y especias a la parrilla." },
-                { name: "Chuletas de cordero", price: "24€", desc: "Jugosas chuletas de cordero a la parrilla." },
-                { name: "Lubina a la parrilla", price: "25€", desc: "Marinada en ajo y perejil con salsa tártara." },
-                { name: "Tomahawk de Angus", price: "125€", desc: "1200g de carne australiana de primera calidad con piña a la parrilla." }
+            "especialidades": [
+                        {
+                                    "title": "Nuestras especialidades",
+                                    "items": [
+                                                {
+                                                            "name": "Raqaba de Cordero",
+                                                            "price": "23 €",
+                                                            "desc": "Cuello de cordero cocinado durante 5 horas en el horno, acompañado de un aromático arroz perfumado con canela y frutos secos, servido con arroz esponjoso y suave salsa Sharkasey."
+                                                },
+                                                {
+                                                            "name": "Kafta Balloon",
+                                                            "price": "19 €",
+                                                            "desc": "Carne picada de ternera y cordero, cocinada lentamente en una suave salsa de tomate con verduras, y cubierta con pan libanés."
+                                                },
+                                                {
+                                                            "name": "Kibbeh Labneh",
+                                                            "price": "17 €",
+                                                            "desc": "Croquetas de masa de trigo rellenas de cordero picado, bañadas en una suave salsa de yogur, con piñones tostados y un toque de cilantro fresco."
+                                                },
+                                                {
+                                                            "name": "Cordero Zafra",
+                                                            "price": "29 €",
+                                                            "desc": "Tierna pierna de cordero asada a fuego lento acompañado de trigo verde tostado, realzado con una delicada mezcla de especias aromáticas y frutos secos."
+                                                },
+                                                {
+                                                            "name": "Shish Barak",
+                                                            "price": "16 €",
+                                                            "desc": "Pasta libanesa rellena de carne en suave salsa de yogur y piñones."
+                                                },
+                                                {
+                                                            "name": "Cuscús Marrakesh",
+                                                            "price": "18 €",
+                                                            "desc": "Cuscús de ternera estofada y verduras."
+                                                },
+                                                {
+                                                            "name": "Cuscús Tanger",
+                                                            "price": "16 €",
+                                                            "desc": "Cuscús de pollo asado, cebolla caramelizada, almendras y pasas."
+                                                },
+                                                {
+                                                            "name": "Cuscús vegetal",
+                                                            "price": "14 €",
+                                                            "desc": "Cuscús de verdura con cebolla caramelizada y pasas."
+                                                },
+                                                {
+                                                            "name": "Tajin de Carne",
+                                                            "price": "17 €",
+                                                            "desc": "Ternera tierna cocinada lentamente con ciruelas caramelizadas y especias aromáticas, al estilo tradicional marroquí."
+                                                },
+                                                {
+                                                            "name": "Tajin de Pollo al limón",
+                                                            "price": "15 €",
+                                                            "desc": "Pollo cocinado lentamente con limón confitado, especias y aceitunas."
+                                                },
+                                                {
+                                                            "name": "Pastela de Pollo",
+                                                            "price": "15 €",
+                                                            "desc": "Crujiente masa filo rellena de pollo, almendras, cebolla caramelizada y un toque dulce."
+                                                },
+                                                {
+                                                            "name": "Pastela de Marisco",
+                                                            "price": "16 €",
+                                                            "desc": "Crujiente masa filo rellena de marisco, pescado y fideos."
+                                                }
+                                    ]
+                        },
+                        {
+                                    "title": "Especialidades por encargo",
+                                    "items": [
+                                                {
+                                                            "name": "Cordero asado entero",
+                                                            "price": "Precio según temporada",
+                                                            "desc": "Con arroz oriental o freekhe y frutos secos."
+                                                },
+                                                {
+                                                            "name": "Medio cordero asado",
+                                                            "price": "Precio según temporada",
+                                                            "desc": "Con arroz oriental o freekhe y frutos secos."
+                                                },
+                                                {
+                                                            "name": "Paletilla de cordero",
+                                                            "price": "Precio según temporada",
+                                                            "desc": "Con arroz oriental o freekhe y frutos secos."
+                                                }
+                                    ],
+                                    "note": "Disponible solo bajo pedido, con un mínimo de 24 h de antelación."
+                        }
             ],
-            especialidades: [
-                { name: "Raqaba de Cordero", price: "23€", desc: "Cocinado 5 horas, con arroz perfumado, canela y frutos secos." },
-                { name: "Kafta Balloon", price: "19€", desc: "Carne picada en salsa de tomate y verduras cubierta con pan libanés." },
-                { name: "Tajin de Carne", price: "15€", desc: "Ternera tierna con ciruelas caramelizadas al estilo marroquí." },
-                { name: "Pastela de Pollo", price: "15€", desc: "Masa filo rellena de pollo y almendras tostadas." },
-                { name: "Cuscús Marrakesh", price: "18€", desc: "Sémola de trigo con ternera estofada y verduras." },
-                { name: "Piñata de Marisco", price: "29€", desc: "Piña tropical rellena de mariscos variados." }
+            "parrilla": [
+                        {
+                                    "title": "Parrilla",
+                                    "items": [
+                                                {
+                                                            "name": "Mix Grill",
+                                                            "price": "23 €",
+                                                            "desc": "Selección de pinchos de solomillo de ternera, pollo y kafta."
+                                                },
+                                                {
+                                                            "name": "Lahem Mashwi",
+                                                            "price": "21 €",
+                                                            "desc": "Pinchos de cordero a la parrilla."
+                                                },
+                                                {
+                                                            "name": "Shish Taouk",
+                                                            "price": "19 €",
+                                                            "desc": "Pinchos de pollo marinados en especias, limón, aceite de oliva y asados a la parrilla."
+                                                },
+                                                {
+                                                            "name": "Kafta Khachkhach",
+                                                            "price": "18 €",
+                                                            "desc": "Kafta de carne picada mezclada con hierbas y especias, cocinada a la parrilla."
+                                                },
+                                                {
+                                                            "name": "Kafta Labneh",
+                                                            "price": "19 €",
+                                                            "desc": "Brochetas de ternera y cordero picado a la parrilla con salsa de yogur, cilantro y piñones."
+                                                },
+                                                {
+                                                            "name": "Kafta Karaz con Pistacho",
+                                                            "price": "21 €",
+                                                            "desc": "Brochetas de carne picada de ternera y cordero a la parrilla, acompañadas de salsa de cereza."
+                                                },
+                                                {
+                                                            "name": "Lubina a la parrilla",
+                                                            "price": "23 €",
+                                                            "desc": "Lubina a la parrilla marinada en ajo y perejil acompañada de salsa tártara."
+                                                },
+                                                {
+                                                            "name": "Chuletas de Cordero",
+                                                            "price": "24 €",
+                                                            "desc": "Jugosas chuletas de cordero a la parrilla."
+                                                },
+                                                {
+                                                            "name": "Langostinos al estilo libanés",
+                                                            "price": "25 €",
+                                                            "desc": "Langostinos marinados con ajo y cilantro en salsa de pimiento y tomate."
+                                                }
+                                    ]
+                        }
             ],
-            postres: [
-                { name: "Cheesecake Dubai", price: "8€", desc: "Tarta de queso cremosa al estilo Dubai." },
-                { name: "Pistacho Libanés", price: "8€", desc: "Masa de pistacho con suave crema mascarpone." },
-                { name: "Baklawa", price: "3€/ud", desc: "Masa filo rellena de frutos secos y almíbar." },
-                { name: "Katayef", price: "8€", desc: "Crêpe relleno de frutos secos y helado." },
-                { name: "Mouhalabieh", price: "6.50€", desc: "Cuajada árabe aromatizada con pistacho o frambuesa." }
+            "degustacion": [
+                        {
+                                    "title": "Menú degustación",
+                                    "items": [
+                                                {
+                                                            "name": "Menú degustación",
+                                                            "price": "42 €/persona",
+                                                            "desc": "Entrantes (mínimo 2 comensales): fríos (Hummus, Baba Ganush y Muhammara); calientes (Briwat de pescado, Briwat de pollo y Faláfel); Pan Balloon. Plato principal: cualquier plato de la carta excepto Cordero Zafra. Postres: tarta de queso y Mouhalabieh de Pistacho.",
+                                                            "fullWidth": true
+                                                }
+                                    ],
+                                    "note": "Para celebraciones y ocasiones especiales, en Zafra disponemos de menús de grupo personalizados. Consúltanos y diseñaremos una propuesta a vuestra medida."
+                        }
+            ],
+            "acompanamientos": [
+                        {
+                                    "title": "Acompañamientos",
+                                    "items": [
+                                                {
+                                                            "name": "Arroz Libanés",
+                                                            "price": "6 €",
+                                                            "desc": "Arroz aromatizado con especias."
+                                                },
+                                                {
+                                                            "name": "Pan Balloon",
+                                                            "price": "1,90 €",
+                                                            "desc": "Pan casero recién hecho."
+                                                },
+                                                {
+                                                            "name": "Patatas fritas",
+                                                            "price": "5 €",
+                                                            "desc": ""
+                                                }
+                                    ]
+                        }
+            ],
+            "postres": [
+                        {
+                                    "title": "Postres",
+                                    "items": [
+                                                {
+                                                            "name": "Baklava",
+                                                            "price": "4 €/ud",
+                                                            "desc": "Masa filo rellena de frutos secos y bañada en almíbar."
+                                                },
+                                                {
+                                                            "name": "Cheesecake Dubai",
+                                                            "price": "8 €",
+                                                            "desc": "Tarta de queso al estilo Dubai."
+                                                },
+                                                {
+                                                            "name": "Pistacho Libanés",
+                                                            "price": "8 €",
+                                                            "desc": "Masa de pistacho con suave crema mascarpone."
+                                                },
+                                                {
+                                                            "name": "Katayef",
+                                                            "price": "8 €",
+                                                            "desc": "Tortita árabe rellena de frutos secos y helado."
+                                                },
+                                                {
+                                                            "name": "Mouhalabieh de Pistacho",
+                                                            "price": "6,50 €",
+                                                            "desc": "Suave cuajada árabe aromatizada, cubierta con pistachos tostados y un toque de almíbar."
+                                                },
+                                                {
+                                                            "name": "Mouhalabieh de frutos secos",
+                                                            "price": "6 €",
+                                                            "desc": "Suave cuajada árabe aromatizada, cubierta con coco, pasas y pistacho."
+                                                }
+                                    ]
+                        }
+            ],
+            "bebidas": [
+                        {
+                                    "title": "Bebidas",
+                                    "items": [
+                                                {
+                                                            "name": "Agua 0.7L",
+                                                            "price": "2,90 €",
+                                                            "desc": "Agua filtrada."
+                                                },
+                                                {
+                                                            "name": "Agua con gas",
+                                                            "price": "3,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Refrescos",
+                                                            "price": "3 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Limonada con hierbabuena",
+                                                            "price": "5,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Ayran",
+                                                            "price": "6 €",
+                                                            "desc": "Bebida refrescante de yogur."
+                                                }
+                                    ]
+                        },
+                        {
+                                    "title": "Cervezas",
+                                    "items": [
+                                                {
+                                                            "name": "Cerveza Libanesa",
+                                                            "price": "4,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Cerveza 0,0 tostada",
+                                                            "price": "3,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Águila",
+                                                            "price": "3,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Alcázar",
+                                                            "price": "3,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Estrella",
+                                                            "price": "3,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Mahou",
+                                                            "price": "3,50 €",
+                                                            "desc": ""
+                                                }
+                                    ]
+                        },
+                        {
+                                    "title": "Café y té",
+                                    "items": [
+                                                {
+                                                            "name": "Café Espresso",
+                                                            "price": "2,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Café cortado",
+                                                            "price": "2,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Capuccino",
+                                                            "price": "3 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Café con leche",
+                                                            "price": "2,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Café libanés con Cardamomo",
+                                                            "price": "5 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Café Zafra",
+                                                            "price": "6 €",
+                                                            "desc": "Café con azafrán natural."
+                                                },
+                                                {
+                                                            "name": "Té moruno",
+                                                            "price": "4,50 €",
+                                                            "desc": ""
+                                                },
+                                                {
+                                                            "name": "Infusiones",
+                                                            "price": "2,80 €",
+                                                            "desc": "Manzanilla / tila / poleo menta"
+                                                }
+                                    ]
+                        }
             ]
-        };
+};
 
         function filterMenu(category) {
             const container = document.getElementById('menu-container');
             const tabs = document.querySelectorAll('.menu-tab');
-            
-            // Animación de salida
+
+            // Mantener la animación de la página original.
             container.style.opacity = '0';
-            
+
             setTimeout(() => {
-                // Cambiar clase activa
                 tabs.forEach(tab => tab.classList.remove('active'));
                 document.getElementById(`tab-${category}`).classList.add('active');
-                
-                // Generar HTML
-                let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">';
-                menuData[category].forEach(item => {
-                    html += `
-                        <div class="menu-item flex flex-col justify-center">
-                            <div class="flex justify-between items-baseline mb-2">
-                                <h4 class="font-serif text-xl md:text-2xl text-zafra-gold">${item.name}</h4>
-                                <span class="text-zafra-white font-medium text-sm md:text-base">${item.price}</span>
-                            </div>
-                            <p class="text-zafra-white/40 text-xs md:text-sm leading-relaxed">${item.desc}</p>
+
+                const groups = menuData[category] || [];
+                const html = groups.map(group => `
+                    <div class="mb-14">
+                        <h3 class="font-serif text-3xl md:text-4xl text-zafra-gold text-center mb-6">${group.title}</h3>
+                        ${group.note ? `<p class="text-center text-zafra-white/60 text-xs md:text-sm mb-7 max-w-2xl mx-auto">${group.note}</p>` : ''}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                            ${group.items.map(item => `
+                                <div class="menu-item flex flex-col justify-center ${item.fullWidth ? 'md:col-span-2' : ''}">
+                                    <div class="flex justify-between items-baseline gap-4 mb-2">
+                                        <h4 class="font-serif text-xl md:text-2xl text-zafra-gold">${item.name}</h4>
+                                        <span class="text-zafra-white font-medium text-sm md:text-base text-right shrink-0">${item.price}</span>
+                                    </div>
+                                    ${item.desc ? `<p class="text-zafra-white/40 text-xs md:text-sm leading-relaxed">${item.desc}</p>` : ''}
+                                </div>
+                            `).join('')}
                         </div>
-                    `;
-                });
-                html += '</div>';
-                
+                    </div>
+                `).join('');
+
                 container.innerHTML = html;
-                
-                // Animación de entrada
                 container.style.opacity = '1';
             }, 300);
         }
 
-        // Carga inicial
-        window.onload = () => {
-            filterMenu('entrantes');
-        };
+        // Cargar la primera categoría al entrar en la web.
+        window.onload = () => filterMenu('entrantes');
 
         // UI Logic
         const menuToggle = document.getElementById('menu-toggle');
@@ -407,6 +1063,26 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Galería fotográfica: ampliar y cerrar imágenes.
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        function openPhoto(src, label) {
+            lightboxImg.src = src;
+            lightboxImg.alt = label;
+            lightbox.classList.add('open');
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePhoto() {
+            lightbox.classList.remove('open');
+            lightbox.classList.add('hidden');
+            lightboxImg.removeAttribute('src');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('lightbox-close').addEventListener('click', closePhoto);
+        lightbox.addEventListener('click', (ev) => { if (ev.target === lightbox) closePhoto(); });
+        document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && lightbox.classList.contains('open')) closePhoto(); });
     </script>
 </body>
 </html>
